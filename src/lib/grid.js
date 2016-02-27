@@ -3,18 +3,27 @@ const COORDINATES = {
     Y: 1
 };
 
-let _value = Symbol('value');
+let _size = Symbol('size');
+let _obstacles = Symbol('obstacles');
 
 class Grid {
 
-    constructor(value) {
-        this[_value] = Array.isArray(value) ? value : [100, 100];
+    constructor(grid, obstacles) {
+        this[_size] = Array.isArray(grid) ? grid : [100, 100];
+        this[_obstacles] = (Array.isArray(obstacles) ? obstacles : [])
+            .filter(Array.isArray);
     }
 
     isOutOfBounds(x, y) {
         return (
-            (x > this[_value][COORDINATES.X] || x < 0) ||
-            (y > this[_value][COORDINATES.Y] || y < 0)
+            (x > this[_size][COORDINATES.X] || x < 0) ||
+            (y > this[_size][COORDINATES.Y] || y < 0)
+        );
+    }
+
+    hasObstacle(x, y) {
+        return this[_obstacles].find((item) =>
+            item[COORDINATES.X] === x && item[COORDINATES.Y] === y
         );
     }
 

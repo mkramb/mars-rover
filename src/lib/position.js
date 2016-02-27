@@ -16,15 +16,13 @@ const MOVES = {
 
 let _value = Symbol('value');
 let _direction = Symbol('direction');
-let _obstacles = Symbol('obstacles');
 let _grid = Symbol('grid');
 
 class Position {
 
-    constructor(grid, position, direction, obstacles) {
+    constructor(position, direction, grid) {
         this[_value] = Array.isArray(position) ? position : [0, 0];
         this[_direction] = direction;
-        this[_obstacles] = obstacles;
         this[_grid] = grid;
     }
 
@@ -39,13 +37,11 @@ class Position {
                 let move = MOVES[this[_direction].orientation];
                 var newPosition = this[_value].slice();
 
-                newPosition[move.axis] += (
-                    move.value * command.move
-                );
+                newPosition[move.axis] += (move.value * command.move);
 
                 if (
-                    this[_obstacles].hasObstacle(...newPosition) ||
-                    this[_grid].isOutOfBounds(...newPosition)
+                    this[_grid].isOutOfBounds(...newPosition) ||
+                    this[_grid].hasObstacle(...newPosition)
                 ) {
                     return false;
                 }

@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "compile": "rm -fr ./dist && ./node_modules/.bin/babel -d dist/ src/",
-    "test": "./node_modules/.bin/mocha -r test/helpers/init.js --compilers js:babel-register",
-    "start": "./node_modules/.bin/nodemon --watch src --watch test --exec npm test"
+    "start": "./node_modules/.bin/nodemon --watch src --watch test --exec npm test",
+    "test": "./node_modules/.bin/mocha -r test/helpers/init.js --compilers js:babel-register"
   },
   "repository": {
     "type": "git",

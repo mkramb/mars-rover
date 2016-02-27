@@ -1,6 +1,5 @@
 import Position from './lib/position';
 import Direction from './lib/direction';
-import Obstacles from './lib/obstacles';
 import { Grid } from './lib/grid';
 
 const isString = (obj) =>
@@ -14,15 +13,16 @@ let _position = Symbol('position');
 class Rover {
 
     constructor({
-        grid,
+        size,
         position,
         direction,
         obstacles
     }) {
-        grid = new Grid(grid);
+        let grid = new Grid(size, obstacles);
+        let initialDirection = new Direction(direction);
 
         this[_position] = new Position(
-            grid, position, new Direction(direction), new Obstacles(obstacles)
+            position, initialDirection, grid
         );
 
         if (grid.isOutOfBounds(...this[_position].current)) {

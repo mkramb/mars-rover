@@ -8,3 +8,4 @@ Mars Rover Kata
 **Running tests**
 
     npm test
+    npm start
