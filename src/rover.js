@@ -1,6 +1,4 @@
-
-import Position from './position';
-import Direction from './direction';
+import Position from './lib/position';
 
 const isString = (obj) =>
     Object.prototype.toString.call(obj) === '[object String]';
@@ -8,25 +6,23 @@ const isString = (obj) =>
 const splitCommands = (input) =>
     (isString(input) && input.length) ? input.split('') : [];
 
-let _grid = Symbol('grid');
 let _position = Symbol('position');
 
 class Rover {
 
     constructor({
-        grid = [100, 100],
+        grid,
         position,
         direction
     }) {
-        this[_grid] = grid;
         this[_position] = new Position(
-            position, new Direction(direction)
+            position, direction, grid
         );
     }
 
     move(input) {
-        splitCommands(input).forEach((command) => {
-            this[_position].move(command);
+        splitCommands(input).every((command) => {
+            return !(this[_position].move(command));
         });
     }
 

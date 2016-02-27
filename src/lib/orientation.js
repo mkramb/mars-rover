@@ -12,7 +12,7 @@ const getDirectionIndex = (index) =>
 
 let _value = Symbol('value');
 
-class Direction {
+class Orientation {
 
     constructor(value) {
         this[_value] = getDirectionIndex(
@@ -34,4 +34,4 @@ class Direction {
 
 }
 
-export default Direction;
+export default Orientation;
