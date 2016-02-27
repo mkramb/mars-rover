@@ -1,8 +1,8 @@
 import Rover from '../src/rover';
 
-describe('Rover', function() {
+describe('Mars Rover', function() {
 
-    it('should be able to move on grid', function() {
+    it('should be able to move on the grid', function() {
         let rover = new Rover({
             grid: [10, 7],
             position: [0, 0],
@@ -14,16 +14,25 @@ describe('Rover', function() {
         expect(rover.position).deep.equal([0, 3]);
     });
 
-    it('should be able to handle starting direction', function() {
-        let rover = new Rover({
+    it('should be able to account for initial orientation', function() {
+        let roverA = new Rover({
             grid: [10, 10],
             position: [0, 0],
             direction: 90
         });
 
-        rover.move('UUULLUUU');
+        roverA.move('UUULLUUU');
 
-        expect(rover.position).deep.equal([0, 0]);
+        let roverB = new Rover({
+            grid: [3, 9],
+            position: [3, 3],
+            direction: 180
+        });
+
+        roverB.move('UUURU');
+
+        expect(roverA.position).deep.equal([0, 0]);
+        expect(roverB.position).deep.equal([2, 0]);
     });
 
     it('should be able to stop when it falls of the grid', function() {
@@ -39,18 +48,27 @@ describe('Rover', function() {
     });
 
     it('should be able to stop when it hits an obstacle', function() {
-        let rover = new Rover({
+        let roverA = new Rover({
+            grid: [10, 7],
+            position: [1, 2],
+            direction: 0
+        });
+
+        roverA.move('U');
+
+        let roverB = new Rover({
             grid: [10, 7],
             position: [0, 0],
             direction: 0,
             obstacles: [
-                [1, 3],
+                roverA.position
             ]
         });
 
-        rover.move('RULUUULU');
+        roverB.move('RULUUULU');
 
-        expect(rover.position).deep.equal([1, 2]);
+        expect(roverA.position).deep.equal([1, 3]);
+        expect(roverB.position).deep.equal([1, 2]);
     });
 
     it('should be able to do a full circle', function() {
