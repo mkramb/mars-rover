@@ -1,7 +1,7 @@
 Mars Rover
 ========
 
-Develop an API that moves a rover around Mars, which is modelled as a rectangular grid.
+An API that moves a rover around Mars, which is modelled as a rectangular grid.
 
 * The rover will be giving a starting coordinate and direction it is facing.
 * The rover will take four commands, left (L), right (R), up (U) and down (D).
@@ -18,7 +18,22 @@ moving to the grid position.
 
     npm install
 
-**Running tests**
+**Running Tests**
 
     npm test
     npm start
+
+**Api Example**
+
+    let rover = new Rover({
+        size: [9, 3],
+        position: [0, 0],
+        direction: 0,
+        obstacles: [
+            [2,2]
+        ]
+    });
+
+    rover.move('UURUURUURUU');
+
+    expect(rover.position).deep.equal([1, 2])
