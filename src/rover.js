@@ -31,9 +31,9 @@ class Rover {
     }
 
     move(input) {
-        splitCommands(input).every((command) => {
-            return this[_position].move(command) !== false;
-        });
+        splitCommands(input).every((command) =>
+            this[_position].move(command) !== false
+        );
     }
 
     get position() {

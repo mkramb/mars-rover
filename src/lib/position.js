@@ -3,8 +3,8 @@ import { COORDINATES } from './grid';
 const COMMANDS = {
     'L': { rotate: true, degree: -90 },
     'R': { rotate: true, degree: +90 },
-    'U': { rotate: false, move: +1 },
-    'D': { rotate: false, move: -1 }
+    'U': { rotate: false, direction: +1 },
+    'D': { rotate: false, direction: -1 }
 };
 
 const MOVES = {
@@ -37,7 +37,7 @@ class Position {
                 let move = MOVES[this[_direction].orientation];
                 var newPosition = this[_value].slice();
 
-                newPosition[move.axis] += (move.value * command.move);
+                newPosition[move.axis] += (move.value * command.direction);
 
                 if (
                     this[_grid].isOutOfBounds(...newPosition) ||
