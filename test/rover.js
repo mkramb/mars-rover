@@ -35,6 +35,16 @@ describe('Mars Rover', function() {
         expect(roverB.position).deep.equal([2, 0]);
     });
 
+    it('should be able to stop when initial position is out of bounds', function() {
+        expect(() =>
+            new Rover({
+                grid: [10, 7],
+                position: [10, 10],
+                direction: 0
+            })
+        ).to.throw('Initial position is out of bounds');
+    });
+
     it('should be able to stop when it falls of the grid', function() {
         let rover = new Rover({
             grid: [11, 7],

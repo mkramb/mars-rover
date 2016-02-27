@@ -1,6 +1,4 @@
-import Direction from './direction';
-import Obstacles from './obstacles';
-import { Grid, COORDINATES } from './grid';
+import { COORDINATES } from './grid';
 
 const COMMANDS = {
     'L': { rotate: true, degree: -90 },
@@ -25,9 +23,9 @@ class Position {
 
     constructor(grid, position, direction, obstacles) {
         this[_value] = Array.isArray(position) ? position : [0, 0];
-        this[_direction] = new Direction(direction);
-        this[_obstacles] = new Obstacles(obstacles);
-        this[_grid] = new Grid(grid);
+        this[_direction] = direction;
+        this[_obstacles] = obstacles;
+        this[_grid] = grid;
     }
 
     move(input) {
