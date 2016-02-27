@@ -55,14 +55,17 @@ describe('Rover', function() {
 
     it('should be able to do a full circle', function() {
         let rover = new Rover({
-            grid: [4, 4],
+            grid: [9, 3],
             position: [0, 0],
-            direction: 0
+            direction: 0,
+            obstacles: [
+                [2,2]
+            ]
         });
 
-        rover.move('UUUURUUUURUUUURUUUU');
+        rover.move('UURUURUURUU');
 
-        expect(rover.position).deep.equal([0, 0]);
+        expect(rover.position).deep.equal([1, 2]);
     });
 
 });
