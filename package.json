@@ -1,0 +1,24 @@
+{
+  "name": "mars-rover-kata",
+  "version": "1.0.0",
+  "description": "Mars Rover Kata",
+  "main": "index.js",
+  "scripts": {
+    "compile": "rm -fr ./dist && ./node_modules/.bin/babel -d dist/ src/",
+    "test": "./node_modules/.bin/mocha -r test/helpers/init.js --compilers js:babel-register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkramb/mars-rover-kata.git"
+  },
+  "author": "Mitja Kramberger <mitja.kramberger@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-register": "^6.5.2",
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.3"
+  }
+}
