@@ -1,11 +1,17 @@
-import rover from '../src/rover';
+import Rover from '../src/rover';
 
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      expect([1,2,3].indexOf(5)).equal(-1);
-      expect([1,2,3].indexOf(0)).equal(-1);
-      expect(typeof rover).equal('function');
+describe('Rover', function() {
+
+    it('should be able to move on grid by RULUUULU', function() {
+        let rover = new Rover({
+            grid: [10, 7],
+            position: [0, 0],
+            direction: 0
+        });
+
+        rover.move('RULUUULU');
+
+        expect(rover.position).deep.equal([0, 3]);
     });
-  });
+
 });
