@@ -13,16 +13,17 @@ class Rover {
     constructor({
         grid,
         position,
-        direction
+        direction,
+        obstacles
     }) {
         this[_position] = new Position(
-            position, direction, grid
+            grid, position, direction, obstacles
         );
     }
 
     move(input) {
         splitCommands(input).every((command) => {
-            return !(this[_position].move(command));
+            return this[_position].move(command) !== false;
         });
     }
 

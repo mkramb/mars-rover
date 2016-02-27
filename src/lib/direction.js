@@ -1,5 +1,4 @@
-
-const DIRECTIONS = [
+const ORIENTATION = [
     'NORTH',
     'EAST',
     'SOUTH',
@@ -8,11 +7,11 @@ const DIRECTIONS = [
 
 const getDirectionStep = (degree) => Math.floor(degree / 90);
 const getDirectionIndex = (index) =>
-    index < 0 ? (DIRECTIONS.length + index) : index;
+    index < 0 ? (ORIENTATION.length + index) : index;
 
 let _value = Symbol('value');
 
-class Orientation {
+class Direction {
 
     constructor(value) {
         this[_value] = getDirectionIndex(
@@ -23,15 +22,15 @@ class Orientation {
     rotate (degree) {
         if (Number.isInteger(degree)) {
             this[_value] = (
-                DIRECTIONS.length + this[_value] + getDirectionStep(degree)
-            ) % DIRECTIONS.length;
+                ORIENTATION.length + this[_value] + getDirectionStep(degree)
+            ) % ORIENTATION.length;
         }
     }
 
-    get name() {
-        return DIRECTIONS[this[_value]];
+    get orientation() {
+        return ORIENTATION[this[_value]];
     }
 
 }
 
-export default Orientation;
+export default Direction;
