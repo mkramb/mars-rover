@@ -9,9 +9,13 @@ let _obstacles = Symbol('obstacles');
 class Grid {
 
     constructor(grid, obstacles) {
+        let minItemLength = Object.keys(COORDINATES).length;
+
         this[_size] = Array.isArray(grid) ? grid : [100, 100];
         this[_obstacles] = (Array.isArray(obstacles) ? obstacles : [])
-            .filter(Array.isArray);
+            .filter((item) =>
+                Array.isArray(item) && item.length >= minItemLength
+            );
     }
 
     isOutOfBounds(x, y) {

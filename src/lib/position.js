@@ -3,15 +3,15 @@ import { COORDINATES } from './grid';
 const COMMANDS = {
     'L': { rotate: true, degree: -90 },
     'R': { rotate: true, degree: +90 },
-    'U': { rotate: false, direction: +1 },
-    'D': { rotate: false, direction: -1 }
+    'U': { rotate: false, step: +1 },
+    'D': { rotate: false, step: -1 }
 };
 
-const MOVES = {
-    'NORTH': { axis: COORDINATES.Y, value: +1 },
-    'EAST':  { axis: COORDINATES.X, value: +1 },
-    'SOUTH': { axis: COORDINATES.Y, value: -1 },
-    'WEST':  { axis: COORDINATES.X, value: -1 }
+const ORIENTATIONS = {
+    'NORTH': { axis: COORDINATES.Y, direction: +1 },
+    'EAST':  { axis: COORDINATES.X, direction: +1 },
+    'SOUTH': { axis: COORDINATES.Y, direction: -1 },
+    'WEST':  { axis: COORDINATES.X, direction: -1 }
 };
 
 let _value = Symbol('value');
@@ -34,10 +34,12 @@ class Position {
                 this[_direction].rotate(command.degree);
             }
             else {
-                let move = MOVES[this[_direction].orientation];
+                let orientation = ORIENTATIONS[this[_direction].orientation];
                 var newPosition = this[_value].slice();
 
-                newPosition[move.axis] += (move.value * command.direction);
+                newPosition[orientation.axis] += (
+                    command.step * orientation.direction
+                );
 
                 if (
                     this[_grid].isOutOfBounds(...newPosition) ||
