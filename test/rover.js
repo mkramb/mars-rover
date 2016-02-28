@@ -41,7 +41,20 @@ describe('Mars Rover', function() {
                 position: [10, 10],
                 direction: 0
             })
-        ).to.throw('Initial position is out of bounds');
+        ).to.throw('Initial position is not valid');
+    });
+
+    it('should be able to stop when initial position contains obstacle', function() {
+        expect(() =>
+            new Rover({
+                size: [10, 7],
+                position: [10, 4],
+                direction: 0,
+                obstacles: [
+                    [10, 4]
+                ]
+            })
+        ).to.throw('Initial position is not valid');
     });
 
     it('should be able to stop when it falls of the grid', function() {

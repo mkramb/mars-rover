@@ -25,8 +25,11 @@ class Rover {
             position, initialDirection, grid
         );
 
-        if (grid.isOutOfBounds(...this[_position].current)) {
-            throw new Error('Initial position is out of bounds');
+        if (
+            grid.isOutOfBounds(...this[_position].current) ||
+            grid.hasObstacle(...this[_position].current)
+        ) {
+            throw new Error('Initial position is not valid');
         }
     }
 
