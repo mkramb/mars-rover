@@ -21,7 +21,7 @@ moving to the grid position.
 **Running Tests**
 
     npm test
-    npm start
+    npm run test-watch
 
 **Api Example**
 
@@ -37,3 +37,7 @@ moving to the grid position.
     rover.move('UURUURUURUU');
 
     expect(rover.position).deep.equal([1, 2])
+
+**Compile ES5**
+
+    npm run compile
